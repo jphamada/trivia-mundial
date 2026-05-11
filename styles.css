@@ -42,7 +42,7 @@ select {
 
 .app-shell {
     min-height: 100dvh;
-    padding: 16px 16px 86px 16px;
+    padding: 16px;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -295,7 +295,7 @@ h2 {
 
 @media (min-width: 700px) {
     .app-shell {
-        padding: 24px 24px 94px 24px;
+        padding: 24px;
     }
 
     .screen {
@@ -314,16 +314,10 @@ h2 {
 
 /* Ad Banner */
 .ad-banner-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
-    padding: 10px 0;
-    z-index: 1000;
+    margin-top: 20px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
