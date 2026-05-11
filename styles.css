@@ -42,7 +42,7 @@ select {
 
 .app-shell {
     min-height: 100dvh;
-    padding: 16px;
+    padding: 16px 16px 86px 16px;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -295,7 +295,7 @@ h2 {
 
 @media (min-width: 700px) {
     .app-shell {
-        padding: 24px;
+        padding: 24px 24px 94px 24px;
     }
 
     .screen {
@@ -310,4 +310,35 @@ h2 {
     margin-top: 24px;
     margin-bottom: 0;
     opacity: 0.8;
+}
+
+/* Ad Banner */
+.ad-banner-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    z-index: 1000;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ad-banner {
+    width: 320px;
+    height: 50px;
+    background-color: #2a2a2a;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    border: 1px dashed #555;
 }
