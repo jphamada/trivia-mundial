@@ -107,23 +107,26 @@ const progressFill = document.getElementById("progress-fill");
 const feedback = document.getElementById("feedback");
 const scoreChip = document.getElementById("score-chip");
 const loseScore = document.getElementById("lose-score");
-const quizHeroImage = document.querySelector("#quiz-screen .hero-image img");
-const startHeroImage = document.querySelector("#start-screen .hero-image img");
-const loseHeroImage = document.querySelector("#lose-screen .hero-image img");
-const winHeroImage = document.querySelector("#win-screen .hero-image img");
-const successHeroImage = document.querySelector("#success-screen .hero-image img");
+const quizHeroImage = document.getElementById("quiz-hero-img");
 const sorteoForm = document.getElementById("sorteo-form");
+const toastEl = document.getElementById("toast");
+let toastTimer = null;
 
-startHeroImage.src = "images/01.jpg";
-loseHeroImage.src = "images/01.jpg";
-winHeroImage.src = "images/01.jpg";
-successHeroImage.src = "images/01.jpg";
+function showToast(message, type) {
+    if (toastTimer) clearTimeout(toastTimer);
+    toastEl.textContent = message;
+    toastEl.className = "toast toast--visible" + (type === "success" ? " toast--success" : "");
+    toastTimer = setTimeout(() => {
+        toastEl.classList.remove("toast--visible");
+    }, 4000);
+}
 
 let currentQuestionIndex = 0;
 let score = 0;
 let isLocked = false;
 
 function showScreen(screen) {
+    window.scrollTo(0, 0);
     [startScreen, quizScreen, loseScreen, winScreen, successScreen].forEach((section) => {
         section.classList.remove("screen--active");
     });
@@ -170,6 +173,12 @@ function handleAnswer(selectedIndex, selectedButton) {
     }
 
     isLocked = true;
+
+    // Precargar imagen de la siguiente pregunta durante el feedback
+    if (currentQuestionIndex + 1 < questions.length) {
+        const nextImg = new Image();
+        nextImg.src = questions[currentQuestionIndex + 1].image;
+    }
 
     const currentQuestion = questions[currentQuestionIndex];
     const optionButtons = Array.from(document.querySelectorAll(".option-btn"));
@@ -242,15 +251,14 @@ sorteoForm.addEventListener("submit", async (e) => {
         });
 
         if (!response.ok) {
-            console.error("Error en la respuesta del servidor:", response.status);
-            alert("Hubo un error al enviar tus datos. Por favor, intentá nuevamente.");
+            const errData = await response.json().catch(() => ({}));
+            showToast(errData.error || "Hubo un error al enviar tus datos. Por favor, intentá nuevamente.");
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
             return;
         }
 
-        const data = await response.json();
-
+        await response.json();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         sorteoForm.reset();
@@ -260,6 +268,6 @@ sorteoForm.addEventListener("submit", async (e) => {
         console.error("Error de red:", error);
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        alert("No se pudo conectar con el servidor. Por favor, intentá nuevamente.");
+        showToast("No se pudo conectar con el servidor. Por favor, intentá nuevamente.");
     }
 });

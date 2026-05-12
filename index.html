@@ -4,10 +4,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Trivia Interactiva</title>
+    <title>Trivia Mundial — LA GACETA</title>
+    <meta name="description" content="Poné a prueba tus conocimientos sobre la historia de los Mundiales. Respondé las 15 preguntas y participá del sorteo exclusivo de LA GACETA." />
+    <meta property="og:title" content="Trivia Mundial — ¿Cuánto sabés de los Mundiales?" />
+    <meta property="og:description" content="Respondé las 15 preguntas y participá del sorteo exclusivo de LA GACETA." />
+    <meta property="og:image" content="images/01.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="images/01.jpg" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -15,8 +22,7 @@
     <main class="app-shell">
         <section class="screen screen--active" id="start-screen">
             <div class="hero-image" aria-hidden="true">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
-                    alt="" />
+                <img src="images/01.jpg" alt="" />
             </div>
             <div class="panel">
                 <p class="eyebrow">Trivia interactiva</p>
@@ -40,8 +46,7 @@
 
         <section class="screen" id="quiz-screen">
             <div class="hero-image hero-image--small" aria-hidden="true">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
-                    alt="" />
+                <img id="quiz-hero-img" src="images/02.jpg" alt="" />
             </div>
 
             <div class="panel panel--quiz">
@@ -71,8 +76,7 @@
 
         <section class="screen" id="lose-screen">
             <div class="hero-image" aria-hidden="true">
-                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=900&q=80"
-                    alt="" />
+                <img src="images/01.jpg" alt="" />
             </div>
             <div class="panel">
                 <p class="eyebrow">Resultado final</p>
@@ -91,8 +95,7 @@
 
         <section class="screen" id="win-screen">
             <div class="hero-image" aria-hidden="true">
-                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=900&q=80"
-                    alt="" />
+                <img src="images/01.jpg" alt="" />
             </div>
             <div class="panel">
                 <p class="eyebrow">¡Sorteo Exclusivo!</p>
@@ -126,8 +129,7 @@
 
         <section class="screen" id="success-screen">
             <div class="hero-image" aria-hidden="true">
-                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=900&q=80"
-                    alt="" />
+                <img src="images/01.jpg" alt="" />
             </div>
             <div class="panel">
                 <p class="eyebrow">¡Éxito!</p>
@@ -145,7 +147,7 @@
         </section>
     </main>
 
+    <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
     <script src="script.js"></script>
 </body>
-
 </html>
